@@ -9,28 +9,27 @@ import org.junit.Test;
 
 public class Lecture2 {
 
+  IntPredicate by3 = x -> x % 3 == 0;
+
   @Test
   public void range() throws Exception {
-    IntPredicate even = x -> x % 3 == 0;
-    IntStream.range(1, 11).filter(even).forEach(System.out::println);
-
+    IntStream.range(1, 11).filter(by3).forEach(System.out::println);
   }
 
   @Test
   public void rangeIteratingLists() throws Exception {
     List<Person> people = MockData.getPeople();
-    IntStream.range(0, people.size())
-        .forEach(index -> {
-          Person person = people.get(index);
-          System.out.println(person);
-        });
+    IntStream.range(0, people.size()).forEach(index -> {
+      Person person = people.get(index);
+      System.out.println(person);
+    });
   }
 
   @Test
   public void intStreamIterate() throws Exception {
-    IntStream.iterate(0, operand -> operand + 1)
-        .filter(number -> number % 2 == 0)
-        .limit(20)
+    IntStream.iterate(0, x -> x + 1)
+        .filter(by3)
+        .limit(10)
         .forEach(System.out::println);
   }
 }
