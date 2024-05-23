@@ -24,6 +24,7 @@ public class Lecture13 {
               System.out.println("mapping price " + price);
               return price + (price * .14);
             })
+            .limit(5)
             .collect(Collectors.toList())
     );
   }
