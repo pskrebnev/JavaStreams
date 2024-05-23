@@ -26,20 +26,24 @@ public class Lecture10 {
 
   @Test
   public void withoutFlatMap() throws Exception {
+    long start = System.currentTimeMillis();
 //    [Mariam, Alex, Ismail, John, Alesha, Andre, Susy, Ali]
     List<String> newNames = new ArrayList<>();
     arrayListOfNames.forEach(newNames::addAll);
     System.out.println(newNames);
+    System.out.println(System.currentTimeMillis() - start + "ms");
   }
 
   @Test
   public void withFlatMap() throws Exception {
+    long start = System.currentTimeMillis();
 //   [Mariam, Alex, Ismail, John, Alesha, Andre, Susy, Ali]
     List<String> names = arrayListOfNames.stream()
         .flatMap(Collection::stream)
         .collect(Collectors.toList());
 
     System.out.println(names);
+    System.out.println(System.currentTimeMillis() - start + "ms");
   }
 }
 
