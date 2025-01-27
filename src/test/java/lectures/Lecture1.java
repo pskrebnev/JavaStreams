@@ -49,5 +49,6 @@ public class Lecture1 {
         .collect(Collectors.toList());
 
     youngPeople.forEach(System.out::println);
+
   }
 }

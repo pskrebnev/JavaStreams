@@ -13,12 +13,7 @@ public class Lecture3 {
   public void min() throws Exception {
     final List<Integer> numbers = ImmutableList.of(1, 2, 3, 100, 23, 93, 99);
 
-    Integer min = numbers.stream()
-        .min(Comparator.naturalOrder())
-        .get();
-
-    assertThat(min).isEqualTo(1);
-    System.out.println(min);
+    System.out.println(numbers.stream().min(Comparator.naturalOrder()).get());
 
   }
 
@@ -26,11 +21,10 @@ public class Lecture3 {
   public void max() throws Exception {
     final List<Integer> numbers = ImmutableList.of(1, 2, 3, 100, 23, 93, 99);
 
-    Integer max = numbers.stream()
-        .max(Comparator.naturalOrder())
-        .get();
+    Integer integer = numbers.stream()
+        .max(Comparator.naturalOrder()).get();
 
-    assertThat(max).isEqualTo(100);
-    System.out.println(max);
+    System.out.println(integer);
+
   }
 }

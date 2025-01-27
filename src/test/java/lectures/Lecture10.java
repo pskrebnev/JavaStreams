@@ -3,6 +3,11 @@ package lectures;
 
 import com.google.common.collect.Lists;
 import java.util.ArrayList;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.Before;
@@ -14,6 +19,7 @@ public class Lecture10 {
       Lists.newArrayList("Mariam", "Alex", "Ismail"),
       Lists.newArrayList("John", "Alesha", "Andre"),
       Lists.newArrayList("Susy", "Ali")
+
   );
 
   @Before
@@ -23,6 +29,14 @@ public class Lecture10 {
 
   @Test
   public void withoutFlatMap() throws Exception {
+
+    long start = System.currentTimeMillis();
+//    [Mariam, Alex, Ismail, John, Alesha, Andre, Susy, Ali]
+    List<String> newNames = new ArrayList<>();
+    arrayListOfNames.forEach(newNames::addAll);
+    System.out.println(newNames);
+    System.out.println(System.currentTimeMillis() - start + "ms");
+
 //    [Mariam, Alex, Ismail, John, Alesha, Andre, Susy, Ali]
 
     List<String> names = Lists.newArrayList();
@@ -35,10 +49,22 @@ public class Lecture10 {
 
     System.out.println(names);
 
+
   }
 
   @Test
   public void withFlatMap() throws Exception {
+
+    long start = System.currentTimeMillis();
+//   [Mariam, Alex, Ismail, John, Alesha, Andre, Susy, Ali]
+    List<String> names = arrayListOfNames.stream()
+        .flatMap(Collection::stream)
+        .collect(Collectors.toList());
+
+    System.out.println(names);
+    System.out.println(System.currentTimeMillis() - start + "ms");
+  }
+
 //   [Mariam, Alex, Ismail, John, Alesha, Andre, Susy, Ali]
 
     List<String> names = arrayListOfNames.stream()
@@ -48,6 +74,7 @@ public class Lecture10 {
     System.out.println(names);
 
   }
+
 
 }
 

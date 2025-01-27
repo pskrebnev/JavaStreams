@@ -6,55 +6,69 @@ import static org.assertj.core.api.Assertions.assertThat;
 import beans.Car;
 import com.google.common.collect.ImmutableList;
 import java.math.BigDecimal;
+
+import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.function.Predicate;
+
 import java.util.stream.Collectors;
 import mockdata.MockData;
 import org.junit.Test;
 
 public class Lecture7 {
 
+
+  Predicate<Car> carColor = car -> car.getColor().equals("Blue");
+
   @Test
   public void count() throws Exception {
-    long count = MockData.getPeople()
-        .stream()
-        .filter(person -> person.getGender().equalsIgnoreCase("female"))
+    Long qty = MockData.getCars().stream()
+        .filter(carColor)
         .count();
-    System.out.println(count);
+
+    System.out.println(qty);
+
   }
 
   @Test
   public void min() throws Exception {
-    double min = MockData.getCars()
-        .stream()
-        .filter(car -> car.getColor().equalsIgnoreCase("yellow"))
-        .mapToDouble(Car::getPrice)
-        .min()
-        .orElse(0);
-    System.out.println(min);
+
+    Car car = MockData.getCars().stream()
+        .min(Comparator.comparing(Car::getPrice))
+        .get();
+
+    System.out.println(car);
+
   }
 
   @Test
   public void max() throws Exception {
-    double max = MockData.getCars()
-        .stream()
-        .filter(car -> car.getColor().equalsIgnoreCase("yellow"))
+
+    Predicate<Car> isYellow = car -> car.getColor().equalsIgnoreCase("yellow");
+
+    double yellowPrice = MockData.getCars().stream()
+        .filter(isYellow)
         .mapToDouble(Car::getPrice)
         .max()
-        .orElse(0);
-    System.out.println(max);
+        .orElse(0.00);
+
+    System.out.println(yellowPrice);
+
   }
 
 
   @Test
   public void average() throws Exception {
     List<Car> cars = MockData.getCars();
-//    ImmutableList<Car> cars = ImmutableList.of();
-    double averagePrice = cars.stream()
+
+    OptionalDouble average = cars.stream()
         .mapToDouble(Car::getPrice)
-        .average()
-        .orElse(0);
-    System.out.println(averagePrice);
+        .average();
+
+    System.out.println(average.getAsDouble());
 
   }
 
