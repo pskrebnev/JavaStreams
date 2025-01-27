@@ -1,6 +1,8 @@
 package lectures;
 
+
 import java.io.IOException;
+
 import java.util.stream.Collectors;
 import mockdata.MockData;
 import org.junit.Test;
@@ -24,6 +26,7 @@ public class Lecture13 {
               System.out.println("mapping price " + price);
               return price + (price * .14);
             })
+
             .limit(5)
             .collect(Collectors.toList())
     );
@@ -45,4 +48,5 @@ public class Lecture13 {
         .collect(Collectors.toList())
         .forEach(System.out::println);
   }
+
 }

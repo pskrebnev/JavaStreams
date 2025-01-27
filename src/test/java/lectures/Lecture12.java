@@ -1,12 +1,14 @@
 package lectures;
 
 import beans.Person;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import java.util.stream.Collectors;
 import mockdata.MockData;
 import org.junit.Test;
@@ -18,6 +20,7 @@ public class Lecture12 {
     List<String> emails = MockData.getPeople()
         .stream()
         .map(Person::getEmail)
+
         .collect(Collectors.toList());
 
     emails.forEach(System.out::println);
@@ -62,4 +65,6 @@ public class Lecture12 {
     combinedList.forEach(System.out::println);
     System.out.println(System.currentTimeMillis() - start + " ms");
   }
+
+
 }

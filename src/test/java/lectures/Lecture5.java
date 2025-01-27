@@ -7,9 +7,11 @@ import beans.Car;
 import beans.Person;
 import beans.PersonDTO;
 import com.google.common.collect.ImmutableList;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.function.Function;
+
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import mockdata.MockData;
@@ -31,6 +33,7 @@ public class Lecture5 {
     System.out.println(carsFiltered.size());
   }
 
+
   @Test
   public void getCarsWithSetProducers() throws IOException {
     ImmutableList<Car> cars = MockData.getCars();
@@ -46,10 +49,12 @@ public class Lecture5 {
   }
 
 
+
   @Test
   public void ourFirstMapping() throws Exception {
     // transform from one data type to another
     List<Person> people = MockData.getPeople();
+
     Function<Person, PersonDTO> personDTOFunction = person -> new PersonDTO(person.getId(),
         person.getFirstName(), person.getAge());
 
@@ -64,6 +69,7 @@ public class Lecture5 {
 
     assertThat(dtos).hasSize(1000);
     System.out.println(dtos.size());
+
   }
 
   @Test
